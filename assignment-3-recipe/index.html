@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfect Chocolate Chip Cookies | My Recipe Collection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c2c2c;
+            background: linear-gradient(135deg, #ffe1ea 0%, #eebfd9 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #d1689e, #b439bd, #b7166c);
+        }
+        
+        h1 {
+            color: #820839;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-weight: bold;
+        }
+        
+        .description {
+            font-size: 1.2rem;
+            color: #666;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .recipe-hero {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .recipe-image {
+            width: 100%;
+            max-width: 500px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border: 5px solid white;
+        }
+        
+        .recipe-section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-left: 6px solid #820839;
+        }
+        
+        h2 {
+            color: #820839;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2::before {
+            content: '🍪';
+            font-size: 1.2em;
+        }
+        
+        .recipe-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .recipe-website {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .info-card {
+            background: #f5e8ec;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #b92062;
+            transition: transform 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .info-label {
+            font-weight: bold;
+            color: #820839;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-value {
+            font-size: 1.2rem;
+            color: #2c2c2c;
+            font-weight: bold;
+        }
+        
+        ul, ol {
+            margin: 1.5rem 0;
+        }
+        
+        ul li, ol li {
+            margin: 0.8rem 0;
+            padding: 0.8rem;
+            background: #f9ecf3;
+            border-radius: 8px;
+            border-left: 4px solid #820839;
+            font-size: 1.05rem;
+        }
+        
+        ul li {
+            list-style: none;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        
+        ul li::before {
+            content: '•';
+            color: #820839;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 1rem;
+            top: 0.5rem;
+        }
+        
+        ol li {
+            padding-left: 1rem;
+            counter-increment: step;
+        }
+        
+        ol {
+            counter-reset: step;
+        }
+        
+        ol li::marker {
+            color: #820839;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .nutrition-label {
+            background: white;
+            border: 2px solid #2c2c2c;
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .nutrition-title {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: left;
+            margin-bottom: 0.5rem;
+            color: #2c2c2c;
+        }
+        
+        .nutrition-serving {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .nutrition-line-thick {
+            border: none;
+            border-top: 8px solid #2c2c2c;
+            margin: 0.5rem 0;
+        }
+        
+        .nutrition-line {
+            border: none;
+            border-top: 1px solid #2c2c2c;
+            margin: 0.3rem 0;
+        }
+        
+        .nutrition-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.2rem 0;
+            align-items: flex-start;
+        }
+        
+        .nutrition-daily {
+            text-align: right;
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin: 0.3rem 0;
+        }
+        
+        .nutrition-indent {
+            padding-left: 1rem;
+            font-size: 0.85rem;
+        }
+        
+        .nutrition-indent-2 {
+            padding-left: 2rem;
+            font-size: 0.85rem;
+        }
+        
+        .nutrition-item {
+            flex: 1;
+        }
+        
+        .nutrition-value {
+            font-weight: bold;
+            margin-left: 1rem;
+        }
+        
+        .nutrition-footnote {
+            font-size: 0.7rem;
+            line-height: 1.3;
+            margin-top: 0.5rem;
+            color: #666;
+        }
+        
+        
+        .tips-section {
+            background: linear-gradient(135deg, #1d030b, #980d71);
+            color: white;
+            border-left: none;
+        }
+        
+        .tips-section h2 {
+            color: white;
+        }
+        
+        .tips-section h2::before {
+            content: '💡';
+        }
+        
+        .tips-content {
+            background: rgba(236, 216, 216, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        strong {
+            color: #bb0e81;
+            font-weight: bold;
+        }
+        a{
+            text-decoration: none;
+        }
+        
+        em {
+            color: #820839;
+            font-style: italic;
+        }
+        
+        mark {
+            background: #eecfe2;
+            color: #ce105c;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        u {
+            text-decoration: underline;
+            text-decoration-color: #820839;
+            text-underline-offset: 3px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .recipe-section {
+                padding: 1.5rem;
+            }
+            
+            .recipe-info {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Heading/Hero Section -->
+        <header>
+            <h1>Perfect Chocolate Chip Cookies</h1>
+            <p class="description">
+                These <strong>irresistibly soft and chewy</strong> chocolate chip cookies are the ultimate comfort treat. 
+                With <em>perfectly golden edges</em> and <mark>gooey centers</mark>, they're guaranteed to become your new favorite recipe!
+            </p>
+        </header>
+
+        <div class="recipe-hero">
+            <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500&h=350&fit=crop&crop=center" 
+                 alt="chocolate chip cookies" 
+                 class="recipe-image" 
+                 width="500" 
+                 height="350">
+        </div>
+
+        <!-- Recipe Information  -->
+        <section class="recipe-section">
+            <h2>Recipe Information</h2>
+            <div class="recipe-info">
+                <div class="info-card">
+                    <div class="info-label">Prep Time</div>
+                    <div class="info-value"><strong>20 minutes</strong></div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Cook Time</div>
+                    <div class="info-value"><strong>10 minutes</strong></div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Total Time</div>
+                    <div class="info-value"><u>30 minutes</u></div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Servings</div>
+                    <div class="info-value"><u>48 cookies</u></div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Yield</div>
+                    <div class="info-value"><u>4 dozen</u></div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Difficulty</div>
+                    <div class="info-value"><em>Beginner</em></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ingredients Section -->
+        <section class="recipe-section">
+            <h2>Ingredients</h2>
+            <ul>
+                <li><strong>3 cups</strong> all-purpose flour</li>
+                <li><strong>1 cup</strong> butter, softened to room temperature</li>
+                <li><strong>3/4 cup</strong> packed brown sugar</li>
+                <li><strong>1/2 cup</strong> granulated white sugar</li>
+                <li><strong>2 large</strong> eggs, room temperature</li>
+                <li><strong>2 teaspoons</strong> pure vanilla extract</li>
+                <li><strong>1 teaspoon</strong> baking soda</li>
+                <li><strong>1/2 teaspoon</strong> salt</li>
+                <li><strong>2 teaspoons</strong> hot water</li>
+                <li><strong>2 cups</strong> semi-sweet chocolate chips</li>
+                <li><strong>1 cup</strong> chopped walnuts</li>
+            </ul>
+        </section>
+ <div class="recipe-hero">
+            <img src="chocolate-recipe.webp" 
+                 alt="chocolate chipe recipe" 
+                 class="recipe-image" 
+                 width="500" 
+                 height="350">
+        </div>
+        <!-- Instructions Section -->
+        <section class="recipe-section">
+            <h2>Instructions</h2>
+            <ol>
+                <li><strong>Preheat</strong> your oven to <mark>375°F (190°C)</mark> and line two baking sheets with parchment paper.</li>
+                <li>In a medium bowl, <em>whisk together</em> the flour, baking soda, and salt. Set this dry mixture aside.</li>
+                <li>In a large mixing bowl, <u>cream together</u> the softened butter, brown sugar, and white sugar until light and fluffy (about 3-4 minutes).</li>
+                <li><strong>Beat in</strong> the eggs one at a time, then add the vanilla extract, mixing until well combined.</li>
+                <li><em>Gradually mix in</em> the flour mixture until just combined, then fold in the chocolate chips.</li>
+                <li>Drop rounded tablespoons of dough onto prepared baking sheets, spacing them <strong>2 inches apart</strong>.</li>
+                <li><mark>Bake for 10-12 minutes</mark> until edges are golden brown but centers still look slightly underbaked.</li>
+                <li>Let cookies <u>cool on baking sheet</u> for 5 minutes before transferring to a wire rack.</li>
+            </ol>
+        </section>
+
+         <!-- Nutrition Facts Section -->
+        <section class="recipe-section">
+            <h2>Nutrition Facts</h2>
+            <div class="nutrition-label">
+                <div class="nutrition-title">Nutrition Facts</div>
+                <div class="nutrition-serving">Per Cookie (1 of 24 servings)</div>
+                <hr class="nutrition-line-thick">
+                
+                <div class="nutrition-row">
+                    <span class="nutrition-item"><strong>Calories</strong></span>
+                    <span class="nutrition-value"><strong>180</strong></span>
+                </div>
+                <hr class="nutrition-line">
+                
+                <div class="nutrition-daily">% Daily Value*</div>
+                
+                <div class="nutrition-row">
+                    <span class="nutrition-item"><strong>Total Fat</strong> 8g</span>
+                    <span class="nutrition-value"><strong>10%</strong></span>
+                </div>
+                <div class="nutrition-row nutrition-indent">
+                    <span class="nutrition-item">Saturated Fat 5g</span>
+                    <span class="nutrition-value"><strong>25%</strong></span>
+                </div>
+                
+                <div class="nutrition-row">
+                    <span class="nutrition-item"><strong>Cholesterol</strong> 25mg</span>
+                    <span class="nutrition-value"><strong>8%</strong></span>
+                </div>
+                
+                <div class="nutrition-row">
+                    <span class="nutrition-item"><strong>Sodium</strong> 140mg</span>
+                    <span class="nutrition-value"><strong>6%</strong></span>
+                </div>
+                
+                <div class="nutrition-row">
+                    <span class="nutrition-item"><strong>Total Carbohydrate</strong> 26g</span>
+                    <span class="nutrition-value"><strong>9%</strong></span>
+                </div>
+                <div class="nutrition-row nutrition-indent">
+                    <span class="nutrition-item">Dietary Fiber 1g</span>
+                    <span class="nutrition-value"><strong>4%</strong></span>
+                </div>
+                <div class="nutrition-row nutrition-indent">
+                    <span class="nutrition-item">Total Sugars 16g</span>
+                    <span class="nutrition-value"></span>
+                </div>
+                <div class="nutrition-row nutrition-indent-2">
+                    <span class="nutrition-item">Added Sugars 14g</span>
+                    <span class="nutrition-value"><strong>28%</strong></span>
+                </div>
+                
+                <div class="nutrition-row">
+                    <span class="nutrition-item"><strong>Protein</strong> 2g</span>
+                    <span class="nutrition-value"></span>
+                </div>
+                
+                <hr class="nutrition-line">
+                
+                <div class="nutrition-row">
+                    <span class="nutrition-item">Vitamin D 0mcg</span>
+                    <span class="nutrition-value">0%</span>
+                </div>
+                <div class="nutrition-row">
+                    <span class="nutrition-item">Calcium 20mg</span>
+                    <span class="nutrition-value">2%</span>
+                </div>
+                <div class="nutrition-row">
+                    <span class="nutrition-item">Iron 1mg</span>
+                    <span class="nutrition-value">6%</span>
+                </div>
+                <div class="nutrition-row">
+                    <span class="nutrition-item">Potassium 60mg</span>
+                    <span class="nutrition-value">1%</span>
+                </div>
+                
+                <hr class="nutrition-line">
+                <div class="nutrition-footnote">
+                    *The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Section -->
+        <section class="recipe-section tips-section">
+            <h2>Pro Tips & Notes</h2>
+            <div class="tips-content">
+                <p><strong>Room Temperature Ingredients:</strong> Make sure your butter and eggs are at room temperature for the best texture and mixing.</p>
+                
+                <p><strong>Don't Overbake:</strong> The cookies will continue cooking on the hot pan after removing from the oven. They should look slightly underdone in the center.</p>
+                
+                <p><strong>Storage Tip:</strong> Store in an airtight container for up to one week, or freeze the dough balls for up to 3 months for fresh cookies anytime!</p>
+            </div>
+            <div class="recipe-website">Check Full Recipe <a href="https://www.allrecipes.com/recipe/10813/best-chocolate-chip-cookies" rel="noreferrer noopener" target="_blank"><strong>Here</strong></a></div>
+        </section>
+    </div>
+</body>
+</html>
