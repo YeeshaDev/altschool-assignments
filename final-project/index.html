@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project - Stopwatch App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <span class="sun-icon">☀️</span>
+        <span class="moon-icon">🌙</span>
+    </button>
+
+    <div class="container">
+        <h1>STOPWATCH</h1>
+        
+        <div class="display" id="display">
+            00:00:00<span class="milliseconds">.000</span>
+        </div>
+
+        <div class="controls">
+            <button class="start-btn" id="startBtn">Start</button>
+            <button class="stop-btn" id="stopBtn">Stop</button>
+            <button class="reset-btn" id="resetBtn">Reset</button>
+            <button class="lap-btn" id="lapBtn" disabled>Lap</button>
+        </div>
+
+        <div class="laps-container" id="lapsContainer" style="display: none;">
+            <button class="clear-btn" id="clearLapsBtn">Clear Laps</button>
+            <div id="lapsList"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Created by Agunbiade Aishat Olabisi | © Altschool, 2025</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
